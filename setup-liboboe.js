@@ -17,7 +17,8 @@ const deleteUnused = false
 //
 const oboeNames = {
   linux: 'liboboe-1.0-x86_64.so.0.0.0',
-  alpine: 'liboboe-1.0-alpine-x86_64.so.0.0.0'
+  alpine: 'liboboe-1.0-alpine-x86_64.so.0.0.0',
+  arm64: 'liboboe-1.0-aarch64.so.0.0.0'
 }
 
 function setupLiboboe (cb) {
@@ -33,6 +34,8 @@ function setupLiboboe (cb) {
     let versionKey = 'linux'
     if (info.id === 'alpine') {
       versionKey = 'alpine'
+    } else if (info.arch === 'arm64') {
+      versionKey = 'arm64'
     }
     return versionKey
   }).then(linux => {
